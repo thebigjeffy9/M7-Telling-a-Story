@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://bddwfljeh2thd"]
+
+[ext_resource type="Shader" uid="uid://cs15e2hgd2lan" path="res://assets/sliding_background.gdshader" id="1_1cblk"]
+[ext_resource type="Texture2D" uid="uid://bnly1gkbxw6b5" path="res://assets/bubble_pattern.png" id="2_rjqnu"]
+[ext_resource type="Texture2D" uid="uid://copkt78vgp37i" path="res://assets/sophia.png" id="3_5dtme"]
+[ext_resource type="Texture2D" uid="uid://d000xjtr4iqtk" path="res://assets/emotion_regular.png" id="4_rjqnu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cfwb"]
+shader = ExtResource("1_1cblk")
+shader_parameter/pattern_sampler = ExtResource("2_rjqnu")
+shader_parameter/bg_color = Color(0.6804039, 0.4019334, 0.86965156, 1)
+shader_parameter/pattern_color = Color(0.89411765, 0.93333334, 0.8784314, 1)
+shader_parameter/pattern_size = 256.0
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6cfwb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Body" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.001
+anchor_top = -0.023000002
+anchor_right = 0.5
+anchor_bottom = 0.9990001
+offset_left = 30.08
+offset_top = 357.84
+offset_right = -26.0
+offset_bottom = 1.079956
+texture = ExtResource("3_5dtme")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Expression" type="TextureRect" parent="Body"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = -30.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rjqnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = 728.0
+offset_right = -332.0
+offset_bottom = -212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "Steph Curry"
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -73.0
+offset_right = -45.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next
+"
