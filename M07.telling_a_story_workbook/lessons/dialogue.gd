@@ -82,7 +82,6 @@ func show_text() -> void:
 	var text_appearing_duration: float = current_item["text"].length() / 30.0
 	tween.tween_property(rich_text_label, "visible_ratio", 1.0, text_appearing_duration)
 
-	
 	var sound_max_offset := audio_stream_player.stream.get_length() - text_appearing_duration
 	var sound_start_position := randf() * sound_max_offset
 	audio_stream_player.play(sound_start_position)
@@ -90,6 +89,13 @@ func show_text() -> void:
 
 	
 	slide_in()
+
+	
+	next_button.disabled = true
+	tween.finished.connect(func() -> void:
+		next_button.disabled = false
+	)
+
 
 
 func advance() -> void:
