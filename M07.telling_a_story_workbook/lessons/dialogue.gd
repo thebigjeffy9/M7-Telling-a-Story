@@ -13,19 +13,20 @@ var bodies := {
 
 
 var dialogue_items: Array[Dictionary] = [
+
 	{
 		"expression": expressions["regular"],
-		"text": "I've been studying arrays and dictionaries lately.",
+		"text": "I've been learning about [wave]arrays and dictionaries[/wave] lately.",
 		"character": bodies["sophia"],
 	},
 	{
 		"expression": expressions["regular"],
-		"text": "Oh, nice. How has it been going?",
+		"text": "Oh, nice. How has it been going? [rainbow val=0.8]This text is colored[/rainbow]",
 		"character": bodies["pink"],
 	},
 	{
 		"expression": expressions["sad"],
-		"text": "Well... it's a little complicated!",
+		"text": "Well... it's a little [shake]complicated[/shake]!",
 		"character": bodies["sophia"],
 	},
 	{
@@ -35,12 +36,12 @@ var dialogue_items: Array[Dictionary] = [
 	},
 	{
 		"expression": expressions["regular"],
-		"text": "It sure takes time to click at first.",
+		"text": "It sure takes time to click at first. [rainbow val=0.8]This text is colored[/rainbow]",
 		"character": bodies["pink"],
 	},
 	{
 		"expression": expressions["happy"],
-		"text": "If you keep at it, eventually, you'll get the hang of it!",
+		"text": "If you keep at it, eventually, you'll get the hang of it! [tornado freq=1.0]This text is even more wavy[/tornado]",
 		"character": bodies["pink"],
 	},
 	{
@@ -50,12 +51,11 @@ var dialogue_items: Array[Dictionary] = [
 	},
 	{
 		"expression": expressions["happy"],
-		"text": "Thanks for the encouragement. Time to LEARN!!!",
+		"text": "Thanks for the encouragement. Time to [tornado freq=3.0][rainbow val=1.0]LEARN!!![/rainbow][/tornado]",
 		"character": bodies["sophia"],
 	},
 ]
 var current_item_index := 0
-
 
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var next_button: Button = %NextButton
@@ -82,6 +82,7 @@ func show_text() -> void:
 	var text_appearing_duration: float = current_item["text"].length() / 30.0
 	tween.tween_property(rich_text_label, "visible_ratio", 1.0, text_appearing_duration)
 
+	
 	var sound_max_offset := audio_stream_player.stream.get_length() - text_appearing_duration
 	var sound_start_position := randf() * sound_max_offset
 	audio_stream_player.play(sound_start_position)
@@ -97,7 +98,6 @@ func show_text() -> void:
 	)
 
 
-
 func advance() -> void:
 	current_item_index += 1
 	if current_item_index == dialogue_items.size():
@@ -110,7 +110,7 @@ func advance() -> void:
 func slide_in() -> void:
 	var slide_tween := create_tween()
 	slide_tween.set_ease(Tween.EASE_OUT)
-	body.position.x = 200
+	body.position.x = get_viewport_rect().size.x / 7
 	slide_tween.tween_property(body, "position:x", 0, 0.3)
 	body.modulate.a = 0
 	slide_tween.parallel().tween_property(body, "modulate:a", 1, 0.2)
